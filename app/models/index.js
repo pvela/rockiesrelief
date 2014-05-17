@@ -3,14 +3,7 @@ var fs = require('fs'),
     Sequelize = require('sequelize'),
     lodash = require('lodash'),
     config = require('../../config/config'),
-    sequelize = new Sequelize("d7mkneoe8vasis", "ucxmwrzqjuahnf", "T_b9-BLUKHqDEHzsQSwmrZVAtN", {
-        host: "ec2-54-225-101-119.compute-1.amazonaws.com",
-        port: 5432,
-        dialect: "postgres",
-        protocol: "postgres",
-        logging: console.log,
-        ssl: true
-    }),
+    sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options),
     db = {}
 
 fs
