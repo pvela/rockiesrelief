@@ -12,7 +12,7 @@ var config = {
             name: 'cogovdev'
         },
         port: 3000,
-        db: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
+        db: 'postgres://ucxmwrzqjuahnf:T_b9-BLUKHqDEHzsQSwmrZVAtN@ec2-54-225-101-119.compute-1.amazonaws.com:5432/d7mkneoe8vasis'
     },
 
     test: {
@@ -30,7 +30,7 @@ var config = {
             name: 'cogovdev'
         },
         port: 3000,
-        db: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
+        db: 'postgres://ucxmwrzqjuahnf:T_b9-BLUKHqDEHzsQSwmrZVAtN@ec2-54-225-101-119.compute-1.amazonaws.com:5432/d7mkneoe8vasis'
     }
 };
 
