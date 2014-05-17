@@ -1,8 +1,6 @@
 var express = require('express'),
-  orm = require('orm'),
-  fs = require('fs'),
   config = require('./config/config');
-
+/*
 orm.db = orm.connect(config.db, function(err, db){
   if(err){
     console.log("Something is wrong with the connection", err);
@@ -40,7 +38,8 @@ if ('development' === app.get('env')) {
     app.use(express.errorHandler())
 }
 
-app.get('/', routes.index)
+//app.get('/', routes.index)
+
 app.post('/materials/create', material.create)
 db
     .sequelize
@@ -55,7 +54,9 @@ db
                 console.log('Express server listening on port ' + app.get('port'))
             })
         }
-    })app.get('/', function(req,res) {
+    });
+
+app.get('/', function(req,res) {
     res.sendfile('./app/views/index.html');
 });
 
