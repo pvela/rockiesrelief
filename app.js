@@ -1,5 +1,5 @@
 var express = require('express'),
-    routes = require('./app/routes'),
+  config = require('./config/config');
     fs = require('fs'),
     http = require('http'),
     path = require('path'),
@@ -31,7 +31,13 @@ require('./config/express')(app, config);
 // all environments
 app.set('port', process.env.PORT || 3000)
 app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
+app.set('view engine', 'html');
+// make a custom html template
+app.engine('html', function(str, options){
+    return function(locals){
+        return str;
+    };
+});
 app.use(express.favicon())
 app.use(express.logger('dev'))
 app.use(express.json())
@@ -45,7 +51,10 @@ if ('development' === app.get('env')) {
     app.use(express.errorHandler())
 }
 
-app.get('/', routes.index)
+app.get('/', function(req,res) {
+    res.sendfile('./app/views/index.html');
+});
+
 app.post('/materials/create', material.create)
 db
     .sequelize
@@ -60,4 +69,7 @@ db
                 console.log('Express server listening on port ' + app.get('port'))
             })
         }
-    })
+    });
+
+
+
