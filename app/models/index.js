@@ -3,7 +3,7 @@ var fs = require('fs'),
     Sequelize = require('sequelize'),
     lodash = require('lodash'),
     config = require('../../config/config'),
-    sequelize = new Sequelize(config.db),
+    sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options),
     db = {}
 
 fs
