@@ -5,7 +5,8 @@ var express = require('express'),
     path = require('path'),
     db = require('./app/models'),
     config = require('./config/config'),
-    user = require('./app/routes/user');
+    donor = require('./app/routes/donor'),
+    material = require('./app/routes/material');
 /*
 orm.db = orm.connect(config.db, function(err, db){
   if(err){
@@ -45,7 +46,7 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', routes.index)
-app.post('/users/create', user.create)
+app.post('/materials/create', material.create)
 db
     .sequelize
     .sync({
