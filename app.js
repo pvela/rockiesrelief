@@ -55,6 +55,14 @@ app.get('/', function(req,res) {
     res.sendfile('./app/views/index.html');
 });
 
+// config route
+var config = require('./app/routes/config');
+app.get('/config', config.create);
+
+app.get('/', function(req,res) {
+    res.sendfile('./app/views/index.html');
+});
+
 app.post('/materials/create', material.create)
 db
     .sequelize

@@ -12,7 +12,7 @@ var config = {
             name: 'cogovdev'
         },
         port: 3000,
-        db: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
+        db: 'mysql://root:@localhost/reliefdb'
     },
 
     test: {
