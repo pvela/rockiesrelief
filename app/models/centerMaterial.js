@@ -2,7 +2,8 @@
 //
 // Use required info in order to set foreign keys
 //
-var centerMaterial = require("./centerMaterial");
+var donationCenter = require("./donationCenter");
+var material = require("./material");
 
 /*
            itemName : "",
@@ -13,17 +14,13 @@ var centerMaterial = require("./centerMaterial");
 
            */
 module.exports = function(sequelize, DataTypes) {
-    var Material = sequelize.define('Material', {
-        itemName: DataTypes.STRING,
-        itemCategoryId: DataTypes.INTEGER,
-        itemCategoryName: DataTypes.STRING,
-        itemQuantity: DataTypes.INTEGER,
-        itemUOM: DataTypes.STRING
+    var CenterMaterial = sequelize.define('CenterMaterial', {
+        itemQuantity: DataTypes.INTEGER
     }, {
         classMethods: {
 
         }
     })
 
-    return Material;
+    return CenterMaterial
 }
