@@ -2,11 +2,18 @@ var fs = require('fs'),
     path = require('path'),
     Sequelize = require('sequelize'),
     lodash = require('lodash'),
+    db = {},
     config = require('../../config/config'),
-    sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options),
-    db = {}
+    sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options);
+/*sequelize = new Sequelize("dfgpjq72i33tlv", "vphqordohuvjtc", "UR2ZJYnPV4NmbtBmLxaoq9RYoa", {
+        host: "ec2-174-129-197-200.compute-1.amazonaws.com",
+        port: 5432,
+        dialect: "postgres",
+        protocol: "postgres"
+    }),*/
 
-    /*fs
+
+/*fs
     .readdirSync(__dirname)
     .filter(function(file) {
         return (file.indexOf('.') !== 0) && (file !== 'index.js')
@@ -99,10 +106,10 @@ delivery.belongsTo(survivor);
 
 // FK Associations
 survivor.hasMany(delivery);
-centerMaterial.belongsTo(delivery);
+centerMaterial.hasMany(delivery);
 volunteer.hasMany(delivery);
 donationCenter.hasMany(delivery);
-delivery.hasMany(centerMaterial);
+delivery.belongsTo(centerMaterial);
 delivery.belongsTo(volunteer);
 delivery.belongsTo(donationCenter);
 
