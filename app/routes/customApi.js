@@ -35,6 +35,18 @@ module.exports = function(db, app) {
         })
 
     });
+
+    app.get('/rest/inventory', function(req, res) {
+        var sql = "select cm.*,m.itemName from Materials m, CenterMaterials cm where m.id = cm.MaterialId";
+
+        getSQL(sql, function(err, results) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(results);
+        })
+
+    });
+
     /*
 intakeId : null,
     donationCenterLocationId : "",
