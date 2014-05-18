@@ -19,7 +19,7 @@ modelModule.factory('Inventory', function($resource) {
     }, {
         query: {
             method: 'GET',
-            isArray: false
+            isArray: true
         },
         save: {
             method: 'PUT'
