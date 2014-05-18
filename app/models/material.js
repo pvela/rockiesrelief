@@ -17,7 +17,6 @@ module.exports = function(sequelize, DataTypes) {
         itemName: DataTypes.STRING,
         itemCategoryId: DataTypes.INTEGER,
         itemCategoryName: DataTypes.STRING,
-        itemQuantity: DataTypes.INTEGER,
         itemUOM: DataTypes.STRING
     }, {
         classMethods: {
