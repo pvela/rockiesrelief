@@ -20,8 +20,8 @@ app.set('port', process.env.PORT || 3000)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'html');
 // make a custom html template
-app.engine('html', function(str, options){
-    return function(locals){
+app.engine('html', function(str, options) {
+    return function(locals) {
         return str;
     };
 });
@@ -38,7 +38,7 @@ if ('development' === app.get('env')) {
     app.use(express.errorHandler())
 }
 
-app.get('/', function(req,res) {
+app.get('/', function(req, res) {
     res.sendfile('./app/views/index.html');
 });
 
@@ -46,18 +46,18 @@ app.get('/', function(req,res) {
 var config = require('./app/routes/config');
 app.get('/config', config.create);
 
-app.get('/', function(req,res) {
+app.get('/', function(req, res) {
     res.sendfile('./app/views/index.html');
 });
 
 var user = require('./app/routes/user');
-app.get('/user',user.validate);
+app.get('/user', user.validate);
 
 
 db
     .sequelize
     .sync({
-        force: true
+        force: false
     })
     .complete(function(err) {
         if (err) {
