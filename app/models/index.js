@@ -8,9 +8,7 @@ var fs = require('fs'),
         host: "ec2-174-129-197-200.compute-1.amazonaws.com",
         port: 5432,
         dialect: "postgres",
-        protocol: "postgres",
-        logging: console.log,
-        ssl: true
+        protocol: "postgres"
     }),
     db = {}
 
