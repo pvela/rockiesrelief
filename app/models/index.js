@@ -23,7 +23,7 @@ var fs = require('fs'),
     })
 */
 
-var donor = sequelize.import("./donor");
+    /*var donor = sequelize.import("./donor");
 db[donor.name] = donor;
 
 var donationCenter = sequelize.import("./donationCenter");
