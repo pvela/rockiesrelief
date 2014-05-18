@@ -2,17 +2,18 @@ var fs = require('fs'),
     path = require('path'),
     Sequelize = require('sequelize'),
     lodash = require('lodash'),
-    config = require('../../config/config'),
-    //sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options),
-    sequelize = new Sequelize("dfgpjq72i33tlv", "vphqordohuvjtc", "UR2ZJYnPV4NmbtBmLxaoq9RYoa", {
-        host: "ec2-174-129-197-200.compute-1.amazonaws.com",
-        port: 5432,
-        dialect: "postgres",
-        protocol: "postgres"
-    }),
-    db = {}
+    config = require('../../config/config');
+//sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db.options),
+/*var sequelize = new Sequelize("dfgpjq72i33tlv", "vphqordohuvjtc", "UR2ZJYnPV4NmbtBmLxaoq9RYoa", {
+    host: "ec2-174-129-197-200.compute-1.amazonaws.com",
+    port: 5432,
+    dialect: "postgres",
+    protocol: "postgres"
+});*/
+var sequelize = new Sequelize(config.db_url);
+var db = {};
 
-    /*fs
+/*fs
     .readdirSync(__dirname)
     .filter(function(file) {
         return (file.indexOf('.') !== 0) && (file !== 'index.js')
@@ -23,7 +24,7 @@ var fs = require('fs'),
     })
 */
 
-    /*var donor = sequelize.import("./donor");
+/*var donor = sequelize.import("./donor");
 db[donor.name] = donor;
 
 var donationCenter = sequelize.import("./donationCenter");
