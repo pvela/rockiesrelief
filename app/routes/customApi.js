@@ -113,9 +113,10 @@ var connection = mysql.createConnection({
     password: config.db.password,
     database: config.db.database
 });
+connection.connect();
 
 function getSQL(query, callback) {
-    connection.connect();
+
     var json = '';
     connection.query(query, function(err, results, fields) {
         if (err)
@@ -129,7 +130,7 @@ function getSQL(query, callback) {
         /***************
          * Correction 2: Nest the callback correctly!
          ***************/
-        connection.end();
+        //connection.end();
         console.log('JSON-result:', json);
         callback(null, json);
     });
