@@ -17,9 +17,20 @@ RRService.factory('UserService', ['$resource', 'User', '$rootScope',
     }
 ]);
 
-RRService.factory('DashboardService', ['$resource', '$rootScope',
-    function ($resource, $rootScope) {
-
+RRService.factory('DashboardService', ['$resource', 'Dashboard',
+    function ($resource, dashboard) {
+        var dashService = {
+            getTotalIntakes :  function() {
+                var dashData = dashboard.query();
+                dashData.$promise.then(function(results) {
+                    console.log(results)
+                }, function() {
+                    console.log('error in getting inventory data')
+                });
+                return dashData
+            }
+        }
+        return dashService
     }
 ]);
 

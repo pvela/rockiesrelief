@@ -26,3 +26,16 @@ modelModule.factory('Inventory', function($resource) {
         }
     })
 });
+
+modelModule.factory('Dashboard', function($resource) {
+    return $resource('/rest/totalIntakes', {
+    }, {
+        query: {
+            method: 'GET',
+            isArray: true
+        },
+        save: {
+            method: 'PUT'
+        }
+    })
+});
