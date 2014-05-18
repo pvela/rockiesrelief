@@ -1,8 +1,11 @@
 //donor.js
-/*intakeId : null,
-    donationCenterLocationId : "",
-    acceptedByVolunteerId : "",
-    donorName: "Paul",
+
+//var intake = require("./intake");
+//var donationCenter = require("./donationCenter");
+
+/*
+    donorLastName: "May",
+    donorFirstName: "Paul",
     donorAddress1 : "4520 Broadway Street",
     donorAddress2 : "",
     donorZipCode : "",
@@ -14,9 +17,8 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Donor = sequelize.define('Donor', {
-        donationCenterLocationId: DataTypes.INTEGER,
-        acceptedByVolunteerId: DataTypes.INTEGER,
-        donorName: DataTypes.STRING,
+        donorFirstName: DataTypes.STRING,
+        donorLastName: DataTypes.STRING,
         donorAddress1: DataTypes.STRING,
         donorAddress2: DataTypes.STRING,
         donorZipCode: DataTypes.STRING,
@@ -31,5 +33,5 @@ module.exports = function(sequelize, DataTypes) {
         }
     })
 
-    return Donor
+    return Donor;
 }

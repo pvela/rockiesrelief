@@ -1,33 +1,20 @@
 var express = require('express'),
-  config = require('./config/config');
-    fs = require('fs'),
-    http = require('http'),
-    path = require('path'),
-    db = require('./app/models'),
-    config = require('./config/config'),
-    donor = require('./app/routes/donor'),
-    material = require('./app/routes/material');
-/*
-orm.db = orm.connect(config.db, function(err, db){
-  if(err){
-    console.log("Something is wrong with the connection", err);
-    return ;
-  }
-});
-
-var modelsPath = __dirname + '/app/models';
-fs.readdirSync(modelsPath).forEach(function (file) {
-  if (file.indexOf('.js') >= 0) {
-    require(modelsPath + '/' + file);
-  }
-});
-*/
+    config = require('./config/config');
+fs = require('fs'),
+http = require('http'),
+path = require('path'),
+config = require('./config/config'),
+restful = require('sequelize-restful'),
+db = require('./app/models');
 
 var app = express();
-
+app.use(restful(db.sequelize, {
+    endpoint: '/api',
+    logLevel: 'debug'
+}));
+app.use(customApi(db.sequelize));
 require('./config/express')(app, config);
 //require('./config/routes')(app);
-
 // all environments
 app.set('port', process.env.PORT || 3000)
 app.set('views', __dirname + '/views')
@@ -38,14 +25,13 @@ app.engine('html', function(str, options){
         return str;
     };
 });
-app.use(express.favicon())
-app.use(express.logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded())
-app.use(express.methodOverride())
-app.use(app.router)
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+//app.use(app.router)
 app.use(express.static(path.join(__dirname, 'public')))
-
 
 // development only
 if ('development' === app.get('env')) {
@@ -55,9 +41,6 @@ if ('development' === app.get('env')) {
 app.get('/', function(req,res) {
     res.sendfile('./app/views/index.html');
 });
-
-
-
 
 // config route
 var config = require('./app/routes/config');
@@ -71,7 +54,6 @@ var user = require('./app/routes/user');
 app.get('/user',user.validate);
 
 
-app.post('/materials/create', material.create)
 db
     .sequelize
     .sync({
@@ -84,8 +66,6 @@ db
             http.createServer(app).listen(app.get('port'), function() {
                 console.log('Express server listening on port ' + app.get('port'))
             })
+            require("./testdata/all")(db);
         }
     });
-
-
-

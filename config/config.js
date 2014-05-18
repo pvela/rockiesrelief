@@ -34,7 +34,19 @@ var config = {
             name: 'cogovdev'
         },
         port: 3000,
-        db: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
+        db: {
+            database: "reliefdb",
+            username: "relief",
+            password: "reliefpwd",
+            options: {
+                host: "173.194.244.81",
+                port: 3306,
+                dialect: "mysql",
+                protocol: "mysql",
+                logging: console.log
+            }
+        },
+        db_url: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
     },
 
     production: {
@@ -44,19 +56,17 @@ var config = {
         },
         port: 3000,
         db: {
-            database: "d7mkneoe8vasis",
-            username: "ucxmwrzqjuahnf",
-            password: "T_b9-BLUKHqDEHzsQSwmrZVAtN",
+            database: "dfgpjq72i33tlv",
+            username: "vphqordohuvjtc",
+            password: "UR2ZJYnPV4NmbtBmLxaoq9RYoa",
             options: {
-                host: "ec2-54-225-101-119.compute-1.amazonaws.com",
+                host: "ec2-174-129-197-200.compute-1.amazonaws.com",
                 port: 5432,
                 dialect: "postgres",
-                protocol: "postgres",
-                logging: console.log,
-                ssl: true
+                protocol: "postgres"
             }
         },
-        db_url: 'postgres://ucxmwrzqjuahnf:T_b9-BLUKHqDEHzsQSwmrZVAtN@ec2-54-225-101-119.compute-1.amazonaws.com:5432/d7mkneoe8vasis'
+        db_url: 'postgres://vphqordohuvjtc:UR2ZJYnPV4NmbtBmLxaoq9RYoa@ec2-174-129-197-200.compute-1.amazonaws.com:5432/dfgpjq72i33tlv'
     }
 };
 
