@@ -32,6 +32,9 @@ db[material.name] = material;
 var intake = sequelize.import("./intake");
 db[intake.name] = intake;
 
+var category = sequelize.import("./category");
+db[category.name] = category;
+
 var volunteer = sequelize.import("./volunteer");
 db[volunteer.name] = volunteer;
 
@@ -75,6 +78,10 @@ intake.belongsTo(donor);
 intake.belongsTo(volunteer);
 intake.belongsTo(donationCenter);
 
+
+//    Category FK Associations
+category.hasMany(material);
+material.belongsTo(category);
 
 //    Volunteer.hasMany(delivery);
 volunteer.belongsTo(donationCenter);
