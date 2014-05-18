@@ -56,7 +56,9 @@ app.get('/user', user.validate);
 
 db
     .sequelize
-    .sync()
+    .sync({
+        force: true
+    })
     .complete(function(err) {
         if (err) {
             throw err[0]
@@ -64,6 +66,6 @@ db
             http.createServer(app).listen(app.get('port'), function() {
                 console.log('Express server listening on port ' + app.get('port'))
             })
-            //require("./testdata/all")(db);
+            require("./testdata/all")(db);
         }
     });
