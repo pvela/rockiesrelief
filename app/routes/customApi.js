@@ -103,6 +103,9 @@ intakeId : null,
         console.dir(req.body)
         var data = req.body;
         var materials = [];
+        var twilio = require('./twilioInterface.js')
+        var phonenumber = data.donorPhone;
+        twilio.sendMessage('+1' + phonenumber, 'Thank you for your donation');
         try {
             intake.create({
                 "intakeNotes": data.intakeNotes || data.intakeNotes != null || data.intakeNotes.trim() != "" ? data.intakeNotes : ""
