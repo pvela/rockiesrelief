@@ -22,3 +22,21 @@ RRService.factory('DashboardService', ['$resource', '$rootScope',
 
     }
 ]);
+
+RRService.factory('InventoryService',['$resource','Inventory',
+    function ($resource,inventory) {
+        var inventoryService = {
+            getInventory  : function() {
+                var invData = inventory.query();
+                invData.$promise.then(function(results) {
+                    console.log(results)
+                }, function() {
+                    console.log('error in getting inventory data')
+                });
+                return invData
+            }
+        }
+
+        return inventoryService
+    }
+]);

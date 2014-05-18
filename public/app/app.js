@@ -10,9 +10,7 @@ $script('components/moment/min/moment.min.js', 'moment');
 angular.module('rockieRelief', ['ngRoute','RR.services'])
 
     .config(['$routeProvider',function($routeProvider) {
-        console.log('ready to load angular')
         _.each(RRGlobals.routesList, function(route) {
-                console.log('loading routes')
             $routeProvider.when(route.route, {templateUrl: route.templateUrl, controller: route.controller});
         })
         // default route
