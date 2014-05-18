@@ -89,31 +89,35 @@ intakeId : null,
         var intake = db.Intake;
         var centerMaterials = db.CenterMaterial;
         var centerMaterialIntakes = db.CenterMaterialIntake;
-        var data = req.body.intake;
+        console.dir(req.body)
+        var data = req.body;
         var materials = [];
-        intake.create({
-            "intakeNotes": data.intakeNotes || data.intakeNotes != null || data.intakeNotes.trim() != "" ? data.intakeNotes : ""
-        }).success(function(intake, created) {
-            //create centerMaterialsIntake
-            // update qty in centerMaterials
-            if (data.donatedItems && data.donatedItems.length > 0) {
-                for (var i = 0; i < data.donatedItems.length; i++) {
-                    var item = data.donatedItems[i];
-                    centerMaterialIntakes.create({
-                        intakeId: intake.id,
-                        intakeQuantity: item.intakeQuantity,
-                        material_id: item.materialId
-                    });
-                    CenterMaterials.findAll({
-                        "where": []
+        try {
+            intake.create({
+                "intakeNotes": data.intakeNotes || data.intakeNotes != null || data.intakeNotes.trim() != "" ? data.intakeNotes : ""
+            }).success(function(intake, created) {
+                    //create centerMaterialsIntake
+                    // update qty in centerMaterials
+                    if (data.donatedItems && data.donatedItems.length > 0) {
+                        for (var i = 0; i < data.donatedItems.length; i++) {
+                            var item = data.donatedItems[i];
+                            centerMaterialIntakes.create({
+                                intakeId: intake.id,
+                                intakeQuantity: item.intakeQuantity,
+                                material_id: item.materialId
+                            });
+                            centerMaterials.findAll();
+                            materials.push(centerMaterials)
+                        }
+                    }
+                    centerMaterials.findAll({
+                        where: ""
                     })
-                    materials.push(centerMaterials)
-                }
-            }
-            centerMaterials.findAll({
-                where: ""
-            })
-        })
+                })
+        } catch (e) {
+            console.dir(e)
+        }
+
     })
 }
 

@@ -12,13 +12,14 @@ app.use(restful(db.sequelize, {
     endpoint: '/api',
     logLevel: 'debug'
 }));
-require("./app/routes/customApi")(db, app);
+
 require('./config/express')(app, config);
 //require('./config/routes')(app);
 // all environments
 app.set('port', process.env.PORT || 3000)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'html');
+
 // make a custom html template
 app.engine('html', function(str, options) {
     return function(locals) {
@@ -30,6 +31,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.bodyParser());
+app.use(express.cookieParser());
 //app.use(app.router)
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -69,3 +72,5 @@ db
             require("./testdata/all")(db);
         }
     });
+
+require("./app/routes/customApi")(db, app);
