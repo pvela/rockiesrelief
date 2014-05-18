@@ -135,12 +135,12 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="active">
-                <a href="index.html">
+                <a href="#/dashboard">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="pages/widgets.html">
+                <a href="#/inventory">
                     <i class="fa fa-cogs"></i> <span>Inventory</span>
                 </a>
             </li>
@@ -337,12 +337,12 @@
         </h3>
     </div>
     <div class="box-body no-padding">
-        <div id="map-canvas" style="height: 300px;">
             <!--<iframe width="600" height="450" frameborder="0" style="border:0"
                     src="https://www.google.com/maps/embed/v1/view?zoom=10&center=39.7376,-104.9847&key=AIzaSyC1VYT0ShXV0ifQ_nINONZwwzAljNA05eE">
             </iframe>-->
+            <iframe width="600" height="450" frameborder="0" style="padding-left:20;border:2" src="/partials/DACLocationsMap.html">
 
-        </div>
+            </iframe>
     </div><!-- /.box-body-->
 </div>
 <!-- /.box -->
@@ -355,69 +355,3 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script>
-    var arr = new Array();
-    function initialize() {
-        var i;
-        var Locations = [
-            {
-                lat:40.5428,
-                lon:-105.072414
-            },
-            {
-                lat: 40.14811,
-                lon: -105.128058
-            },
-
-            {
-                lat:40.1508,
-                lon:-105.226307
-            }
-        ];
-
-        var myOptions = {
-            zoom: 2,
-            center: new google.maps.LatLng(51.9000,8.4731),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-
-        var infowindow =  new google.maps.InfoWindow({
-            content: ''
-        });
-
-        for (i = 0; i < Locations.length; i++) {
-            size=15;
-            var img=new google.maps.MarkerImage('marker.png',
-                    new google.maps.Size(size, size),
-                    new google.maps.Point(0,0),
-                    new google.maps.Point(size/2, size/2)
-            );
-
-            var marker = new google.maps.Marker({
-                map: map,
-                title: Locations[i].title,
-                position: new google.maps.LatLng(Locations[i].lat, Locations[i].lon),
-                icon: img
-            });
-
-            bindInfoWindow(marker, map, infowindow, "<p>" + Locations[i].descr + "</p>",Locations[i].title);
-
-        }
-
-    }
-
-    function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
-        google.maps.event.addListener(marker, 'mouseover', function() {
-            infowindow.setContent(html);
-            infowindow.open(map, marker);
-
-        });
-        google.maps.event.addListener(marker, 'mouseout', function() {
-            infowindow.close();
-
-        });
-    }
-</script>

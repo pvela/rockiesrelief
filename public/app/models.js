@@ -13,3 +13,16 @@ modelModule.factory('User', function($resource) {
         }
     })
 });
+
+modelModule.factory('Inventory', function($resource) {
+    return $resource('/api/CenterMaterials', {
+    }, {
+        query: {
+            method: 'GET',
+            isArray: false
+        },
+        save: {
+            method: 'PUT'
+        }
+    })
+});

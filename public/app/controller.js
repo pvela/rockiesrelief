@@ -39,8 +39,14 @@ function loginViewController($scope, $window,UserService) {
 }
 loginViewController.$inject = ['$scope', '$window','UserService'];
 
-function dashboardViewController($scope, $window,DashboardService) {
+function dashboardViewController($scope,DashboardService) {
 
 }
 
-dashboardViewController.$inject = ['$scope', '$window','DashboardService'];
+dashboardViewController.$inject = ['$scope','DashboardService'];
+
+function inventoryViewController($scope,InventoryService) {
+    $scope.inventory = InventoryService.getInventory()
+}
+
+inventoryViewController.$inject = ['$scope', 'InventoryService'];
