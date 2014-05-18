@@ -21,7 +21,8 @@ var materialData = [];
 var survivorData = [];
 var voluteerData = [];
 
-db
+module.exports = function(db) {
+    /*db
     .sequelize
     .sync({
         force: true
@@ -34,4 +35,8 @@ db
                 console.log("successfully created Donor")
             });
         }
+    });*/
+    db.Donor.bulkCreate(donorData).success(function() {
+        console.log("successfully created Donor")
     });
+}
