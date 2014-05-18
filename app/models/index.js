@@ -23,7 +23,7 @@ var fs = require('fs'),
     })
 */
 
-    /*var donor = sequelize.import("./donor");
+var donor = sequelize.import("./donor");
 db[donor.name] = donor;
 
 var donationCenter = sequelize.import("./donationCenter");
@@ -66,7 +66,7 @@ donationCenter.hasMany(centerMaterial, {
 
 centerMaterial.belongsTo(donationCenter);
 donor.hasMany(donationCenter);
-*/
+/*
     // centerMaterial FK Associations
 centerMaterial.belongsTo(donationCenter, {
     as: 'donationCenter'
@@ -121,7 +121,7 @@ Object.keys(db).forEach(function(modelName) {
         db[modelName].associate(db)
     }
 })
-
+*/
 module.exports = lodash.extend({
     sequelize: sequelize,
     Sequelize: Sequelize
