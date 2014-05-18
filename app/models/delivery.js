@@ -20,16 +20,5 @@ module.exports = function(sequelize, DataTypes) {
         }
     })
 
-    // FK Associations
-    survivor.hasMany(Delivery);
-    centerMaterial.belongsTo(Delivery);
-    volunteer.hasMany(Delivery);
-    donationCenter.hasMany(Delivery);
-
-    Delivery.belongsTo(survivor);
-    Delivery.hasMany(centerMaterial);
-    Delivery.belongsTo(volunteer);
-    Delivery.belongsTo(donationCenter);
-
     return Delivery;
 }

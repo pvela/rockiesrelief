@@ -4,33 +4,15 @@ fs = require('fs'),
 http = require('http'),
 path = require('path'),
 config = require('./config/config'),
-donor = require('./app/routes/donor'),
-material = require('./app/routes/material'),
 restful = require('sequelize-restful'),
 db = require('./app/models');
-/*
-orm.db = orm.connect(config.db, function(err, db){
-  if(err){
-    console.log("Something is wrong with the connection", err);
-    return ;
-  }
-});
-
-var modelsPath = __dirname + '/app/models';
-fs.readdirSync(modelsPath).forEach(function (file) {
-  if (file.indexOf('.js') >= 0) {
-    require(modelsPath + '/' + file);
-  }
-});
-*/
 
 var app = express();
 app.use(restful(db.sequelize, {
     endpoint: '/api',
-    logLevel: 'debug',
-    allowed: new Array('Donor', 'Material')
+    logLevel: 'debug'
 }));
-
+app.use(customApi(db.sequelize));
 require('./config/express')(app, config);
 //require('./config/routes')(app);
 // all environments
@@ -70,7 +52,6 @@ app.get('/', function(req, res) {
     res.sendfile('./app/views/index.html');
 });
 
-app.post('/materials/create', material.create)
 
 db
     .sequelize

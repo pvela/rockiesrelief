@@ -35,8 +35,14 @@ db[intake.name] = intake;
 var category = sequelize.import("./category");
 db[category.name] = category;
 
+var delivery = sequelize.import("./delivery");
+db[delivery.name] = delivery;
+
 var volunteer = sequelize.import("./volunteer");
 db[volunteer.name] = volunteer;
+
+var survivor = sequelize.import("./survivor");
+db[survivor.name] = survivor;
 
 // donor FK
 
@@ -86,7 +92,19 @@ material.belongsTo(category);
 //    Volunteer.hasMany(delivery);
 volunteer.belongsTo(donationCenter);
 
+survivor.hasMany(delivery);
+survivor.hasMany(donationCenter);
 
+delivery.belongsTo(survivor);
+
+// FK Associations
+survivor.hasMany(delivery);
+centerMaterial.belongsTo(delivery);
+volunteer.hasMany(delivery);
+donationCenter.hasMany(delivery);
+delivery.hasMany(centerMaterial);
+delivery.belongsTo(volunteer);
+delivery.belongsTo(donationCenter);
 
 var centerMaterialIntake = sequelize.import("./centerMaterialIntake");
 db[centerMaterialIntake.name] = centerMaterialIntake;
