@@ -15,7 +15,8 @@ var material = require("./material");
            */
 module.exports = function(sequelize, DataTypes) {
     var CenterMaterial = sequelize.define('CenterMaterial', {
-        itemQuantity: DataTypes.INTEGER
+        itemQuantity: DataTypes.INTEGER,
+        itemShelf: DataTypes.STRING
     }, {
         classMethods: {
 
