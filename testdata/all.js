@@ -28,7 +28,7 @@ var donorData = function() {
 };
 var fakeDonorData = [];
 for (var i = 0; i < 10; i++) {
-    fakeDonorDatas.push(fakeDonorData());
+    fakeDonorData.push(fakeDonorData());
 }
 var deliveryData = [];
 var donationCenterData = [];
