@@ -47,6 +47,17 @@ module.exports = function(db, app) {
 
     });
 
+    app.get('/rest/totalIntakes', function(req, res) {
+        var sql = "select count(id) totalIntakes from Intakes";
+
+        getSQL(sql, function(err, results) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(results);
+        })
+
+    });
+
     /*
 intakeId : null,
     donationCenterLocationId : "",

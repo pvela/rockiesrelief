@@ -2,9 +2,13 @@
 var db = require('../app/models');
 var Faker = require('./Faker');
 
-var INTAKE_CNT = 20;
-var INTAKE_MATERIAL_CNT = 50;
+var INTAKE_CNT = 200;
+var INTAKE_QTY = 30;
+var CENTER_ITEM_QTY = 500;
+var HIGH_QTY = 1000;
+var INTAKE_MATERIAL_CNT = 500;
 var DELIVERY_CNT = 20;
+var DELIVERY_QTY = 20;
 var VOLUNTEER_CNT = 10;
 var SURVIVOR_CNT = 10;
 var DONOR_CNT = 10;
@@ -187,9 +191,9 @@ function loadCategoryData() {
 function loadCenterMaterialsData() {
 
     var fakeData = [];
-    var centerMaterialData = function(materialId, centerId) {
+    var centerMaterialData = function(materialId, centerId, highQty) {
         return {
-            itemQuantity: randomInt(0, 10),
+            itemQuantity: randomInt(0, highQty?HIGH_QTY:CENTER_ITEM_QTY),
             itemShelf: randomInt(1,50),
             DonationCenterId: centerId,
             MaterialId: materialId
@@ -198,7 +202,13 @@ function loadCenterMaterialsData() {
 
     for (var j = 1; j < 4; j++) {
         for (var i = 1; i < MATERIAL_CNT; i++) {
-            fakeData.push(centerMaterialData(i, j));
+            var highQty = false; 
+            // This means that high quantity materials need to be in order
+            // Should add a priority to the material to make this better
+            if (i <= 5) {
+                 highQty = true;
+            }
+            fakeData.push(centerMaterialData(i, j, highQty));
         }
     }
     return fakeData;
@@ -212,7 +222,7 @@ function loadCenterMaterialIntakesData() {
     var fakeData = [];
     var centerMaterialIntakeData = function() {
         return {
-            intakeQuantity: randomInt(0, 10),
+            intakeQuantity: randomInt(0, INTAKE_QTY),
             intake_id: randomInt(1,INTAKE_CNT),
             material_id: randomInt(1,MATERIAL_CNT)
         };
@@ -231,7 +241,7 @@ function loadDeliveryData() {
     var fakeData = [];
     var deliveryData = function () {
         return {
-            deliveryQuantity: randomInt(1, 5),
+            deliveryQuantity: randomInt(1, DELIVERY_QTY),
             SurvivorId: randomInt(1, SURVIVOR_CNT),
             CenterMaterialId: randomInt(1, CENTER_MAT_CNT),
             VolunteerId: randomInt(1, VOLUNTEER_CNT),
@@ -275,6 +285,31 @@ function loadMaterialData() {
 
     // Clothing
     var materialData = [{
+        itemName: "Soap",
+        itemCategoryId: 8,
+        itemCategoryName: "Toiletries",
+        itemUOM:""
+    }, {
+        itemName: "Toothbrush",
+        itemCategoryId: 8,
+        itemCategoryName: "Toiletries",
+        itemUOM:""
+    }, {
+        itemName: "Toothpaste",
+        itemCategoryId: 8,
+        itemCategoryName: "Toiletries",
+        itemUOM:""
+    }, {
+        itemName: "Drinking Water",
+        itemCategoryId: 5,
+        itemCategoryName: "Liquid",
+        itemUOM:""
+    }, {
+        itemName: "Baby Formula",
+        itemCategoryId: 3,
+        itemCategoryName: "Food",
+        itemUOM:""
+    }, {
         itemName: "Coat",
         itemCategoryId: 1,
         itemCategoryName: "Clothing",
@@ -341,11 +376,6 @@ function loadMaterialData() {
         itemCategoryName: "Liquid",
         itemUOM:""
     }, {
-        itemName: "Bottled Water",
-        itemCategoryId: 5,
-        itemCategoryName: "Liquid",
-        itemUOM:""
-    }, {
         itemName: "Milk",
         itemCategoryId: 5,
         itemCategoryName: "Liquid",
@@ -394,22 +424,7 @@ function loadMaterialData() {
         itemUOM:""
     }, {
     // Toiletries
-        itemName: "Soap",
-        itemCategoryId: 8,
-        itemCategoryName: "Toiletries",
-        itemUOM:""
-    }, {
         itemName: "Shampoo",
-        itemCategoryId: 8,
-        itemCategoryName: "Toiletries",
-        itemUOM:""
-    }, {
-        itemName: "Toothbrush",
-        itemCategoryId: 8,
-        itemCategoryName: "Toiletries",
-        itemUOM:""
-    }, {
-        itemName: "Toothpaste",
         itemCategoryId: 8,
         itemCategoryName: "Toiletries",
         itemUOM:""
@@ -440,11 +455,6 @@ function loadMaterialData() {
         itemUOM:""
     }, {
         itemName: "Mac & Cheese",
-        itemCategoryId: 3,
-        itemCategoryName: "Food",
-        itemUOM:""
-    }, {
-        itemName: "Baby Formula",
         itemCategoryId: 3,
         itemCategoryName: "Food",
         itemUOM:""
