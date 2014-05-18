@@ -26,6 +26,9 @@ db[donationCenter.name] = donationCenter;
 var centerMaterial = sequelize.import("./centerMaterial");
 db[centerMaterial.name] = centerMaterial;
 
+var centerMaterialIntake = sequelize.import("./centerMaterialIntake");
+db[centerMaterialIntake.name] = centerMaterialIntake;
+
 var material = sequelize.import("./material");
 db[material.name] = material;
 
