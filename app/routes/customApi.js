@@ -26,7 +26,7 @@ module.exports = function(db, app) {
         });*/
 
         //var sql = "select sum(cm.itemQuantity) count,dc.donationCenterCity address, dc.donationCenterAffiliate title, c.categoryName category, dc.donationCenterGeoLat lat, dc.donationCenterGeoLat lng from DonationCenters dc, CenterMaterials cm, Materials m, Categories c where dc.id = cm.DonationCenterId and  cm.MaterialId = m.id and c.id = m.CategoryId group by dc.donationCenterCity, dc.donationCenterAffiliate , dc.donationCenterGeoLat, dc.donationCenterGeoLat, c.categoryName";
-        var sql = "select sum(cm.itemQuantity) count,dc.donationCenterCity address, dc.donationCenterAffiliate title, 'c.categoryName' category, dc.donationCenterGeoLat lat, dc.donationCenterGeoLat lng from DonationCenters dc, CenterMaterials cm where dc.id = cm.DonationCenterId  group by dc.donationCenterCity, dc.donationCenterAffiliate , dc.donationCenterGeoLat, dc.donationCenterGeoLat";
+        var sql = "select sum(cm.itemQuantity) count,dc.* from DonationCenters dc, CenterMaterials cm where dc.id = cm.DonationCenterId  group by dc.donationCenterCity, dc.donationCenterAffiliate , dc.donationCenterGeoLat, dc.donationCenterGeoLat";
 
         getSQL(sql, function(err, results) {
             res.statusCode = 200;
