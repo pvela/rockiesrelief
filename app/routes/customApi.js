@@ -107,24 +107,26 @@ intakeId : null,
             intake.create({
                 "intakeNotes": data.intakeNotes || data.intakeNotes != null || data.intakeNotes.trim() != "" ? data.intakeNotes : ""
             }).success(function(intake, created) {
-                    //create centerMaterialsIntake
-                    // update qty in centerMaterials
-                    if (data.donatedItems && data.donatedItems.length > 0) {
-                        for (var i = 0; i < data.donatedItems.length; i++) {
-                            var item = data.donatedItems[i];
-                            centerMaterialIntakes.create({
-                                intakeId: intake.id,
-                                intakeQuantity: item.intakeQuantity,
-                                material_id: item.materialId
-                            });
-                            centerMaterials.findAll();
-                            materials.push(centerMaterials)
-                        }
+                //create centerMaterialsIntake
+                // update qty in centerMaterials
+                if (data.donatedItems && data.donatedItems.length > 0) {
+                    for (var i = 0; i < data.donatedItems.length; i++) {
+                        var item = data.donatedItems[i];
+                        centerMaterialIntakes.create({
+                            intakeId: intake.id,
+                            intakeQuantity: item.intakeQuantity,
+                            material_id: item.materialId
+                        });
+                        //centerMaterials.findAll();
+                        //materials.push(centerMaterials)
                     }
-                    centerMaterials.findAll({
-                        where: ""
-                    })
-                })
+                }
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.send({
+                    "success"
+                });
+            })
         } catch (e) {
             console.dir(e)
         }
