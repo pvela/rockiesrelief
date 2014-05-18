@@ -26,9 +26,6 @@ db[donationCenter.name] = donationCenter;
 var centerMaterial = sequelize.import("./centerMaterial");
 db[centerMaterial.name] = centerMaterial;
 
-var centerMaterialIntake = sequelize.import("./centerMaterialIntake");
-db[centerMaterialIntake.name] = centerMaterialIntake;
-
 var material = sequelize.import("./material");
 db[material.name] = material;
 
@@ -71,18 +68,21 @@ material.hasMany(centerMaterial);
 
 // Intake FK Associations
 donor.hasMany(intake);
-centerMaterial.hasMany(intake);
 volunteer.hasMany(intake);
 donationCenter.hasMany(intake);
 
 intake.belongsTo(donor);
-intake.hasMany(centerMaterial);
 intake.belongsTo(volunteer);
 intake.belongsTo(donationCenter);
 
 
 //    Volunteer.hasMany(delivery);
 volunteer.belongsTo(donationCenter);
+
+
+
+var centerMaterialIntake = sequelize.import("./centerMaterialIntake");
+db[centerMaterialIntake.name] = centerMaterialIntake;
 
 
 Object.keys(db).forEach(function(modelName) {

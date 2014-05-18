@@ -17,7 +17,8 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Donor = sequelize.define('Donor', {
-        donorName: DataTypes.STRING,
+        donorFirstName: DataTypes.STRING,
+        donorLastName: DataTypes.STRING,
         donorAddress1: DataTypes.STRING,
         donorAddress2: DataTypes.STRING,
         donorZipCode: DataTypes.STRING,

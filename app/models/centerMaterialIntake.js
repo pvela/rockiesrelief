@@ -9,21 +9,16 @@
 */
 module.exports = function(sequelize, DataTypes) {
     var CenterMaterialIntake = sequelize.define('CenterMaterialIntake', {
-        centerMaterialIntakeQuantity: DataTypes.INTEGER,
+        intakeQuantity: DataTypes.INTEGER,
         intake_id: {
-           type: DataTypes.INTEGER,
-           references: "intake",
-           referencesKey: "id"
+            type: DataTypes.INTEGER
+            //,references: "intake"
+            //,referencesKey: "id"
         },
         material_id: {
-           type: DataTypes.INTEGER,
-           references: "material",
-           referencesKey: "id"
-        },
-        donationCenter_id: {
-           type: DataTypes.INTEGER,
-           references: "donationCenter",
-           referencesKey: "id"
+            type: DataTypes.INTEGER
+            //,references: "material"
+            //,referencesKey: "id"
         }
     }, {
         classMethods: {

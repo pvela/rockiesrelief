@@ -34,7 +34,19 @@ var config = {
             name: 'cogovdev'
         },
         port: 3000,
-        db: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
+        db: {
+            database: "reliefdb",
+            username: "relief",
+            password: "reliefpwd",
+            options: {
+                host: "173.194.244.81",
+                port: 3306,
+                dialect: "mysql",
+                protocol: "mysql",
+                logging: console.log
+            }
+        },
+        db_url: 'mysql://relief:reliefpwd@173.194.244.81/reliefdb'
     },
 
     production: {
