@@ -15,7 +15,8 @@ var donationCenter = require("./donationCenter");
 
 module.exports = function(sequelize, DataTypes) {
     var Volunteer = sequelize.define('Volunteer', {
-        volunteerName: DataTypes.STRING,
+        volunteerLastName: DataTypes.STRING,
+        volunteerFirstName: DataTypes.STRING,
         volunteerAddress1: DataTypes.STRING,
         volunteerAddress2: DataTypes.STRING,
         volunteerZipCode: DataTypes.STRING,
