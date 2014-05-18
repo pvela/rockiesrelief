@@ -57,7 +57,7 @@ app.get('/user', user.validate);
 db
     .sequelize
     .sync({
-        force: false
+        force: true
     })
     .complete(function(err) {
         if (err) {
