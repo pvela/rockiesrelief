@@ -99,10 +99,10 @@ delivery.belongsTo(survivor);
 
 // FK Associations
 survivor.hasMany(delivery);
-centerMaterial.belongsTo(delivery);
+centerMaterial.hasMany(delivery);
 volunteer.hasMany(delivery);
 donationCenter.hasMany(delivery);
-delivery.hasMany(centerMaterial);
+delivery.belongsTo(centerMaterial);
 delivery.belongsTo(volunteer);
 delivery.belongsTo(donationCenter);
 

@@ -12,7 +12,7 @@ app.use(restful(db.sequelize, {
     endpoint: '/api',
     logLevel: 'debug'
 }));
-app.use(customApi(db.sequelize));
+require("./app/routes/customApi")(db, app);
 require('./config/express')(app, config);
 //require('./config/routes')(app);
 // all environments
