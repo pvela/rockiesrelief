@@ -124,7 +124,7 @@ intakeId : null,
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.send({
-                    "success"
+                    status: "success"
                 });
             })
         } catch (e) {
