@@ -147,19 +147,13 @@ connection.connect();
 function getSQL(query, callback) {
 
     var json = '';
+    if (!connection) {
+        connection.connect();
+    }
     connection.query(query, function(err, results, fields) {
         if (err)
             return callback(err, null);
-
-        console.log('The query-result is: ', results[0]);
-
-        // wrap result-set as json
         json = JSON.stringify(results);
-
-        /***************
-         * Correction 2: Nest the callback correctly!
-         ***************/
-        //connection.end();
         console.log('JSON-result:', json);
         callback(null, json);
     });
