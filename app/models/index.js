@@ -23,7 +23,7 @@ var fs = require('fs'),
     })
 */
 
-var donor = sequelize.import("./donor");
+    /*var donor = sequelize.import("./donor");
 db[donor.name] = donor;
 
 var donationCenter = sequelize.import("./donationCenter");
@@ -66,8 +66,8 @@ donationCenter.hasMany(centerMaterial, {
 
 centerMaterial.belongsTo(donationCenter);
 donor.hasMany(donationCenter);
-
-// centerMaterial FK Associations
+*/
+    // centerMaterial FK Associations
 centerMaterial.belongsTo(donationCenter, {
     as: 'donationCenter'
 });
