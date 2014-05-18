@@ -22,6 +22,13 @@ exports.create = function(req, res) {
                 , template: '/dashboardView.html'
             },
 
+            inventoryView: {
+                title : 'Inventory'
+                , route: '/inventory'
+                , controller: 'inventoryViewController'
+                , template: '/inventoryView.html'
+            },
+
             categoryView: {
                 title : 'Manage Categories'
                 , route: '/categories'

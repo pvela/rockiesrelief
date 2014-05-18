@@ -44,3 +44,9 @@ function dashboardViewController($scope, $window,DashboardService) {
 }
 
 dashboardViewController.$inject = ['$scope', '$window','DashboardService'];
+
+function inventoryViewController($scope, $window) {
+
+}
+
+inventoryViewController.$inject = ['$scope', '$window'];
