@@ -15,7 +15,7 @@ modelModule.factory('User', function($resource) {
 });
 
 modelModule.factory('Inventory', function($resource) {
-    return $resource('/api/CenterMaterials', {
+    return $resource('/rest/inventory', {
     }, {
         query: {
             method: 'GET',
