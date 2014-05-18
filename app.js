@@ -46,6 +46,7 @@ app.use(express.methodOverride())
 app.use(app.router)
 app.use(express.static(path.join(__dirname, 'public')))
 
+
 // development only
 if ('development' === app.get('env')) {
     app.use(express.errorHandler())
@@ -55,6 +56,9 @@ app.get('/', function(req,res) {
     res.sendfile('./app/views/index.html');
 });
 
+
+
+
 // config route
 var config = require('./app/routes/config');
 app.get('/config', config.create);
@@ -62,6 +66,10 @@ app.get('/config', config.create);
 app.get('/', function(req,res) {
     res.sendfile('./app/views/index.html');
 });
+
+var user = require('./app/routes/user');
+app.get('/user',user.validate);
+
 
 app.post('/materials/create', material.create)
 db

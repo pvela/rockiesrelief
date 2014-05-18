@@ -4,7 +4,7 @@ var _ = require('underscore')
 exports.create = function(req, res) {
     var getConfig = function(params) {
 
-        var templatePath = 'partials/'
+        var templatePath = 'partials'
 
         // list all the routes here
         var routesList = {
@@ -53,36 +53,19 @@ exports.create = function(req, res) {
 
         var defaultRoute
         var routesListForThisUser = []
-        if (params.userLoggedIn) {
+
             _.each(routesList, function(route) {
-                if (route.displayFor.indexOf(params.customerCode) > -1 ) {
-                    var templateUrl = templatePath+route.template
-                    var routeItem = {
-                        route : route.route,
-                        templateUrl : templateUrl,
-                        controller : route.controller,
-                        title : route.title
-                    }
-                    routesListForThisUser.push(routeItem)
+                var templateUrl = templatePath+route.template
+                var routeItem = {
+                    route : route.route,
+                    templateUrl : templateUrl,
+                    controller : route.controller,
+                    title : route.title
                 }
+                routesListForThisUser.push(routeItem)
             })
             defaultRoute = '/dashboard'
-        } else {
-            _.each(routesList, function(route) {
-                // user is not logged in so send route only for login
-                if (route.route == "/login") {
-                    var templateUrl = templatePath+route.template
-                    var routeItem = {
-                        route : route.route,
-                        templateUrl : templateUrl,
-                        controller : route.controller,
-                        title : route.title
-                    }
-                    routesListForThisUser.push(routeItem)
-                }
 
-            })
-        }
         return {
             currentVersion : '1.0'
             ,templatePath : templatePath
@@ -98,8 +81,40 @@ exports.create = function(req, res) {
         baseUrl  : 'http://'+req.headers.host,
         userLoggedIn : req.loggedIn
     }
-
-    res.send(getConfig(params))
+    res.setHeader('Content-Type','text/javascript');
+    res.send("var RRGlobals = "+JSON.stringify(getConfig(params)))
 }
 
+/*
+ if (params.userLoggedIn) {
+ _.each(routesList, function(route) {
+ if (route.displayFor.indexOf(params.customerCode) > -1 ) {
+ var templateUrl = templatePath+route.template
+ var routeItem = {
+ route : route.route,
+ templateUrl : templateUrl,
+ controller : route.controller,
+ title : route.title
+ }
+ routesListForThisUser.push(routeItem)
+ }
+ })
+ defaultRoute = '/dashboard'
+ } else {
+ _.each(routesList, function(route) {
+ // user is not logged in so send route only for login
+ if (route.route == "/login") {
+ var templateUrl = templatePath+route.template
+ var routeItem = {
+ route : route.route,
+ templateUrl : templateUrl,
+ controller : route.controller,
+ title : route.title
+ }
+ routesListForThisUser.push(routeItem)
+ }
+ })
+ defaultRoute = '/login'
+ }
+ */
 
