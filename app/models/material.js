@@ -1,5 +1,10 @@
 //material.js
-/*itemId: "",
+//
+// Use required info in order to set foreign keys
+//
+var centerMaterial = require("centerMaterial");
+
+/*
            itemName : "",
            itemCategoryId : "",
            itemCategoryName : "",
@@ -9,17 +14,19 @@
            */
 module.exports = function(sequelize, DataTypes) {
     var Material = sequelize.define('Material', {
-        itemId: DataTypes.INTEGER,
-        itemName: DataTypes.STRING,
-        itemCategoryId: DataTypes.INTEGER,
+        itemName:         DataTypes.STRING,
+        itemCategoryId:   DataTypes.INTEGER,
         itemCategoryName: DataTypes.STRING,
-        itemQuantity: DataTypes.INTEGER,
-        itemUOM: DataTypes.STRING
+        itemQuantity:     DataTypes.INTEGER,
+        itemUOM:          DataTypes.STRING
     }, {
         classMethods: {
 
         }
     })
 
-    return Material
+    // FK Associations
+    Material.hasMany(centerMaterial);
+
+    return Material;
 }
