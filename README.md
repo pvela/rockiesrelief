@@ -7,3 +7,4 @@ This application was built for challege 2 (Disaster Assistance Center Materials 
 
 This project won the 1st place in this category
 
+The companion android app is at https://github.com/PaulTR/CoGovDevChallengeAndroid
